@@ -79,15 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 style: TextStyle(color: Colors.white),
               ),
               onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => BlocProvider.value(
-                      value: BlocProvider.of<CounterCubit>(context),
-                      child: SecondScreen(
-                          title: 'Second Screen', color: Colors.pink),
-                    ),
-                  ),
-                );
+                Navigator.of(context).pushNamed('/second');
               },
             ),
             SizedBox(
@@ -100,15 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 style: TextStyle(color: Colors.white),
               ),
               onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => BlocProvider.value(
-                      value: BlocProvider.of<CounterCubit>(context),
-                      child: ThirdScreen(
-                          title: 'Third Screen', color: Colors.purple),
-                    ),
-                  ),
-                );
+                Navigator.of(context).pushNamed('/third');
               },
             ),
           ],
