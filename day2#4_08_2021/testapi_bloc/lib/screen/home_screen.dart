@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart';
+import 'package:testapi_bloc/bloc/search_bloc.dart';
 import 'package:testapi_bloc/cubit/nav_cubit.dart';
 import 'package:testapi_bloc/cubit/post_cubit.dart';
 import 'package:testapi_bloc/cubit/post_event.dart';
+import 'package:testapi_bloc/screen/search.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
-
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -18,6 +18,19 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Posts'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              showSearch(
+                context: context,
+                delegate: SearchPost(
+                  searchBloc: BlocProvider.of<SearchBloc>(context),
+                ),
+              );
+            },
+            icon: Icon(Icons.search),
+          ),
+        ],
       ),
       body: BlocBuilder<PostBloc, PostState>(
         builder: (context, state) {

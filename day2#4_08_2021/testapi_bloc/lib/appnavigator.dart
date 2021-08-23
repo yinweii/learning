@@ -6,11 +6,9 @@ import 'package:testapi_bloc/screen/detail_screen.dart';
 import 'package:testapi_bloc/screen/home_screen.dart';
 
 class AppNavigator extends StatelessWidget {
-  const AppNavigator({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<NavCubit, Post?>(builder: (context, post) {
+    return BlocBuilder<NavCubit, Post>(builder: (context, post) {
       return Navigator(
         pages: [
           MaterialPage(child: HomeScreen()),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:testapi_bloc/appnavigator.dart';
+import 'package:testapi_bloc/bloc/search_bloc.dart';
 import 'package:testapi_bloc/cubit/nav_cubit.dart';
 import 'package:testapi_bloc/cubit/post_cubit.dart';
 import 'package:testapi_bloc/cubit/post_event.dart';
@@ -15,6 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -26,7 +28,10 @@ class MyApp extends StatelessWidget {
           ),
           BlocProvider(
             create: (context) => NavCubit(),
-          )
+          ),
+          BlocProvider(
+            create: (context) => SearchBloc(),
+          ),
         ],
         child: AppNavigator(),
       ),

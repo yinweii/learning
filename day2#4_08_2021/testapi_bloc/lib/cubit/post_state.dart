@@ -13,11 +13,11 @@ class RefeshPostState extends PostState {}
 
 class LoadedPostState extends PostState {
   final List<Post> posts;
-  LoadedPostState({required this.posts});
+  LoadedPostState({this.posts});
 }
 
 class FailedToLoadPostState extends PostState {
   final String error;
 
-  FailedToLoadPostState({required this.error});
+  FailedToLoadPostState({this.error});
 }

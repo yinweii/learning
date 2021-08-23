@@ -4,11 +4,7 @@ class Post {
   final String title;
   final String body;
 
-  Post(
-      {required this.userId,
-      required this.id,
-      required this.title,
-      required this.body});
+  Post({this.userId, this.id, this.title, this.body});
   factory Post.formJson(Map<String, dynamic> json) => Post(
       userId: json['userId'],
       id: json['id'],
