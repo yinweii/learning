@@ -1,19 +1,28 @@
 package com.gnof.tipapp
 
 import android.os.Bundle
+import android.util.Log
+import android.util.Log.*
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Remove
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -32,6 +41,7 @@ import androidx.compose.ui.unit.dp
 import com.gnof.tipapp.components.InputField
 import com.gnof.tipapp.ui.theme.TipappTheme
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import com.gnof.tipapp.widgets.RoundIconButton
 
 @ExperimentalComposeUiApi
 class MainActivity : ComponentActivity() {
@@ -57,7 +67,7 @@ fun MyApp(content: @Composable () -> Unit) {
 }
 
 
-//@Preview(showBackground = true)
+@Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     TipappTheme {
@@ -66,7 +76,7 @@ fun DefaultPreview() {
     }
 }
 
-//@Preview
+@Preview
 @Composable
 fun TopHeader(totalPerPerson: Double = 123.0) {
     Surface(
@@ -98,7 +108,9 @@ fun TopHeader(totalPerPerson: Double = 123.0) {
 @Preview
 @Composable
 fun MainContent() {
-
+    BillForm() { billAmt ->
+        Log.d("AMT", "Message Content: $billAmt")
+    }
 
 }
 
@@ -120,7 +132,12 @@ fun BillForm(modifier: Modifier = Modifier, onValueChange: (String) -> Unit = {}
 
     ) {
 
-        Column() {
+        Column(
+            modifier = Modifier.padding(8.dp),
+            verticalArrangement = Arrangement.Top,
+            horizontalAlignment = Alignment.Start,
+
+            ) {
             InputField(
                 valueState = totalBillState,
                 labelId = "Enter Bill",
@@ -135,7 +152,27 @@ fun BillForm(modifier: Modifier = Modifier, onValueChange: (String) -> Unit = {}
 
                     }
                 )
+
             )
+            if (validState) {
+                Row(modifier = Modifier.padding(3.dp), horizontalArrangement = Arrangement.Start) {
+                    Text(
+                        text = "Split",
+                        modifier = Modifier.align(alignment = Alignment.CenterVertically)
+                    )
+                    Spacer(modifier = Modifier.width(120.dp))
+                    Row(
+                        modifier = Modifier.padding(horizontal = 3.dp),
+                        horizontalArrangement = Arrangement.End
+                    ) {
+                        RoundIconButton(imageVector = Icons.Default.Remove, onClick = { /*TODO*/
+                        Log.d("ONCLICK", "ON REMOVE")})
+                        RoundIconButton(imageVector = Icons.Default.Add, onClick = { /*TODO*/ })
+                    }
+                }
+            } else {
+                Box() {}
+            }
         }
     }
 
